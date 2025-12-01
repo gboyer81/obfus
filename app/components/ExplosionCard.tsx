@@ -11,9 +11,6 @@ export default function ExplosionCard() {
       bg-neutral-900
     '
 		>
-			{/* The Container
-        Rotates and expands when 'data-exploded' is present on body
-      */}
 			<section
 				className='
         explode-container 
@@ -23,9 +20,7 @@ export default function ExplosionCard() {
         transition-transform duration-1000 delay-[2s]
       '
 			>
-				{/* 1. The Main Target Text ("Obfuscated") 
-            Visible in standard view. Drops back in exploded view.
-        */}
+				{/* 1. Main Text */}
 				<div
 					className='
           explode-text
@@ -42,9 +37,7 @@ export default function ExplosionCard() {
 					Obfuscated
 				</div>
 
-				{/* 2. The Lens (Blur + Gradient Border)
-            Visible in standard view. Lifts up in exploded view.
-        */}
+				{/* 2. The Lens */}
 				<div
 					className='
           absolute top-1/2 left-1/2 
@@ -55,16 +48,17 @@ export default function ExplosionCard() {
 				>
 					<div
 						className='
-              relative w-full h-full
-              translate-dynamic
-              transform-style-3d
+             relative w-full h-full
+             translate-dynamic
+             transform-style-3d
           '
 					>
-						{/* Layer A: Blur Pane */}
+						{/* Layer A: Blur + Background Tint */}
 						<div
 							className='
               absolute inset-0
               backdrop-blur-dynamic
+              bg-neutral-900/20  /* <-- THIS MAKES THE GLASS VISIBLE */
               rounded-dynamic
               overflow-hidden
               transform-style-3d
@@ -87,10 +81,7 @@ export default function ExplosionCard() {
 					</div>
 				</div>
 
-				{/* 3. The Labels ("Masked Pseudo" / "Element") 
-            INVISIBLE in standard view (opacity-0).
-            Fades in ONLY during explosion.
-        */}
+				{/* 3. Hidden Labels */}
 				<div
 					className='
           explode-label 

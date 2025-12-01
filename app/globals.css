@@ -6,6 +6,19 @@
   
 }
 
+@layer base {
+  :root {
+    --width: 50;
+    --height: 40;
+    --border: 4;
+    --radius: 12;
+    --blur: 14;
+    --alpha: 0;
+    --x: 0;
+    --y: 0;
+  }
+}
+
 @theme {
   --text-shadow-cast: 
                       2px 2px 0 #d97706,
@@ -52,12 +65,12 @@
   --height-dynamic: calc(var(--height) * 1vmin);
   --blur-dynamic: calc(var(--blur) * 1px);
   
-  /* The complex conic gradient */
+  /* Complex Gradient */
   --image-gradient-conic: conic-gradient(from 180deg at 50% 70%,hsla(0,0%,98%,1) 0deg,#eec32d 72deg,#ec4b4b 144deg,#709ab9 216deg,#4dffbf 288deg,hsla(0,0%,98%,1) 1turn);
 }
 
 @layer utilities {
-  /* 1. The Gradient Border Mask Logic */
+  /* Gradient Border Mask Logic */
   .gradient-border-mask {
     --bg-size: calc(100% + (2px * var(--border)));
     mask: 
@@ -67,33 +80,31 @@
     mask-composite: intersect;
   }
 
-  /* 2. 3D Transform Utilities */
-  .transform-style-3d {
-    transform-style: preserve-3d;
-  }
+  /* 3D Utilities */
+  .transform-style-3d { transform-style: preserve-3d; }
   
-  /* 3. Global Explosion States 
-    Using :global() logic or body selectors to react to the JS
-  */
+  /* Animation States */
   body[data-exploded] .explode-container {
     transform: translate3d(0, 0, 100vmin) rotateX(65deg) rotate(35deg);
     transition: transform 1s 0.5s;
   }
-
   body[data-exploded] .explode-text {
     transform: translate3d(0, 0, -150px);
     transition: transform 1s 2s;
   }
-
   body[data-exploded] .explode-border {
     transform: translate3d(0, 0, 150px);
     transition: transform 1s 2s;
   }
-  
   body[data-exploded] .explode-label {
     opacity: 1;
     transition: opacity 1s 2.5s;
   }
+}
+
+/* Custom Utility for Translate */
+@utility translate-dynamic {
+  translate: calc(var(--x) * 1%) calc(var(--y) * 1%);
 }
 
 @keyframes fireFlicker {

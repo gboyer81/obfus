@@ -1,12 +1,13 @@
+'use client'
+
 import ExplosionControls from '../components/ExplosionControls'
 import ExplosionCard from '../components/ExplosionCard'
-import './obfuscated.css'
 
 export default function ObfuscatedDemo() {
 	return (
-		<div className='min-h-screen flex flex-col items-center justify-center'>
+		<main className='min-h-screen flex flex-col items-center justify-center bg-neutral-900'>
 			<ExplosionControls />
 			<ExplosionCard />
-		</div>
+		</main>
 	)
 }
